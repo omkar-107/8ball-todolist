@@ -10,3 +10,4 @@ This project is a fun and interactive to-do list application based on the concep
 
 - Add tasks to your to-do list
 - Drag the Magic 8 Ball to choose a task
+- With localstorage support

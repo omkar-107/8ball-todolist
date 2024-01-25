@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { motion } from "framer-motion";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState(["Task 1", "Task 2", "Task 3"]);
+  const initialTodos = JSON.parse(localStorage.getItem("todos")) 
+  const [todos, setTodos] = useState("todos" in localStorage ? initialTodos : []);
   const [currentTodo, setCurrentTodo] = useState("");
   const [newTodo, setNewTodo] = useState("");
 
@@ -12,6 +13,10 @@ const TodoList = () => {
     setCurrentTodo(selectedTodo);
     setTodos(todos.filter((todo) => todo !== selectedTodo));
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleAddTodo = () => {
     const newTodo = document.querySelector("input").value;
